@@ -33,7 +33,8 @@ route.post("/datasave", upload.single('file'), async (req, res) => {
     await stuController.dataSave(req, res);
 });
 
-route.get("/datadisplay", stuController.dataDisplay);
+route.post("/datadisplay", stuController.dataDisplay);
+route.get("/datadisplayall", stuController.dataDisplayall);
 route.post("/datasearch", stuController.dataSearch);
 route.get("/deleteddisplay", stuController.deleteDataDisplay);
 route.post("/recordDelete", stuController.recordDelete);

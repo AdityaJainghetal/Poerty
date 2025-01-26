@@ -1,12 +1,12 @@
-mongoose =require("mongoose");
+const mongoose = require("mongoose");
 
+const stuSchema  = new mongoose.Schema({
+    name: String,
+    price: Number,
+    description: String,
+    image: String,
+    userid: { type: mongoose.Types.ObjectId, ref: "user" },
+        // userid:String
+});
 
-stuSchema = new mongoose.Schema({
-        name:String,
-        price:Number,
-        description:String,
-        category:String,
-        image:String
-})
-
-module.exports = mongoose.model("student", stuSchema)
+module.exports = mongoose.model("student", stuSchema );

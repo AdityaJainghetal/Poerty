@@ -2,14 +2,14 @@ const StuModel =require("../models/studentModel");
 
 
 const dataSave = async (req, res) => {
-    const { name, price, description } = req.body;
+    const { name, price, description ,id} = req.body;
 
     try {
         const book = await StuModel.create({
             name: name,
             price: price,
             description: description,
-         
+            userid:id,
             image: req.file.path // Use the Cloudinary URL
         });
 
@@ -43,6 +43,14 @@ const recordDelete=async(req, res)=>{
 
 
 const dataDisplay= async(req,res)=>{
+    const {id} =req.body;
+    console.log(req.body)
+    if (id === '')
+        res.json({"message":'invaid id'})
+    const myData = await StuModel.find({userid:id});
+    res.send(myData)
+}
+const dataDisplayall= async(req,res)=>{
     const myData = await StuModel.find();
     res.send(myData)
 }
@@ -73,6 +81,7 @@ module.exports={
     deleteDataDisplay,
     recordDelete,
     editDisplay,
-    editDataSave
+    editDataSave,
+    dataDisplayall,
 
 }

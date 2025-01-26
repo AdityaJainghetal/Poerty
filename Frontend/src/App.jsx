@@ -30,8 +30,8 @@ const App = () => {
 
 
       <Route path={"/dashboard"} element={<Dashboard/>}>
-      <Route index="insert" element={<Insert/>}/>
-      <Route path={'insert'} element={<Insert/>}/>
+      {/* <Route index="dashboard/insert" element={<Insert/>}/> */}
+      <Route path={"insert"} element={<Insert/>}/>
       <Route path={'display'} element={<Display/>}/>
       
 

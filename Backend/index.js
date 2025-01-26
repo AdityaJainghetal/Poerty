@@ -11,14 +11,20 @@ const stuRoute =require("./routes/studentRoute")
 require("dotenv").config();
 
 const Port=process.env.PORT || 8000
-mongoose.connect("mongodb://127.0.0.1:27017/PoetReviewsystem").then(()=>{
-    console.log("DB connected!!!")
-})
+try{
+    mongoose.connect("mongodb://127.0.0.1:27017/PoetReviewsystem").then(()=>{
+        console.log("DB connected!!!")
+    })
+}
+catch(error){
+    console.log(error)
+}
 // Body-parser middleware
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 app.use(cors());
 
+console.log("mdkjshk")
 app.use("/users", UserRoute);
 app.use("/employer", stuRoute)
 

@@ -21,13 +21,14 @@ const Login = () => {
     e.preventDefault();
     let api="http://localhost:8000/users/usercheck";
     axios.post(api, input).then((res)=>{
-                console.log(res.data.Data[0].name)
+                console.log(res.data)
+                console.log("name",res.data.Data[0].name)
                 console.log(res.data.Data[0].email)
 
                 if(res.data.Data[0].name && res.data.Data[0].email){
-                  window.localStorage.setItem("UserName", res.data.Data[0].name);
-                window.localStorage.setItem("userEmail", res.data.Data[0].email);
-
+                  localStorage.setItem("user" ,res.data.Data[0].name)
+                  localStorage.setItem("email" ,res.data.Data[0].email)
+                  localStorage.setItem("Id" ,res.data.Data[0]._id)
                     message.success(res.data.msg);
 
                     navigate("/dashboard")

@@ -3,13 +3,14 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 
 import Dropdown from 'react-bootstrap/Dropdown';
-import Silder from './Silder';
+// import Silder from './Silder';
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const [Rattingdata, setRattingData] = useState([]);
 
   const loadData = async () => {
-      const api= "http://localhost:8000/employer/datadisplay"
+      const api= "http://localhost:8000/employer/dataDisplayall"
       const res = await axios.get(api);
       setData(res.data);
    
@@ -21,6 +22,10 @@ const Home = () => {
     loadData();
   }, []);
 
+
+  const  handlerattingsave = (id)=>{
+
+  }
 
   const cards = data.map((key) => {
     return (
@@ -38,24 +43,34 @@ const Home = () => {
            {key.description}
           </Card.Text>
             
-          <Dropdown>
+          {/* <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         Rating
-      </Dropdown.Toggle>
+      </Dropdown.Toggle> */}
 
-      <Dropdown.Menu>
+      {/* <Dropdown.Menu>
         <Dropdown.Item >1</Dropdown.Item>
         <Dropdown.Item >2</Dropdown.Item>
         <Dropdown.Item >3</Dropdown.Item>
         <Dropdown.Item >4</Dropdown.Item>
         <Dropdown.Item >5</Dropdown.Item>
       </Dropdown.Menu>
-    </Dropdown>
+    </Dropdown> */}
 
-
+        <select className='btn black' onClick={(e)=>setRattingData(e.target.value)}>
+          <option value="" hidden>select ratting</option>
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3'>3</option>
+          <option value='4'>4</option>
+          <option value='5'>5</option>
+        </select>
 
         </Card.Body>
             
+
+        <button className='btn btn-danger' onClick={()=>handlerattingsave(key._id)}>save</button>
+
       </Card>
    
 
@@ -65,8 +80,8 @@ const Home = () => {
   return (
 
      <div >
-      
-      <Silder/>
+{/*       
+      <Silder/> */}
    
          
 

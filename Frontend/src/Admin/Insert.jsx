@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -7,30 +7,37 @@ const Insert = () => {
   const [input, setInput] = useState({});
   const [img, setImg] = useState(null);
   const navigate = useNavigate();
-
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setInput((values) => ({ ...values, [name]: value }));
   };
-
+  const [id,setid] = useState('')
+  useEffect(()=>{
+    const myid  = localStorage.getItem('Id');
+    setid(myid)
+    },[])
+  // console.log("kjhdsn,dmasskj")
+  
   const handleFileChange = (e) => {
     setImg(e.target.files[0]);
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault(); 
-
-   
+    
+    
     if (!input.name || !input.price || !input.description ||  !img) {
       message.error("All fields are required!");
       return;
     }
+  
 
     const api = "http://localhost:8000/employer/datasave";
     const data = new FormData();
 
     data.append('file', img); 
+    data.append('id', id); 
     Object.keys(input).forEach((key) => {
       data.append(key, input[key]); 
     });
